@@ -121,4 +121,30 @@ custom_function = [{
             }
         }
     }
+},{
+    "name": "run_extract_markdown_titles",
+    "description": "Find all Markdown and extract the first occurrance of each H1 tag ",
+    "parameters": {
+        "type": "object",
+        "required": ["input_directory", "output_file_path", "file_pattern"],
+        "properties": {
+            "input_directory": {
+                "type": "string",
+                "description": "directory containing markdown files to process"
+            },
+            "output_file_path": {
+                "type": "string",
+                "description": "path where the JSON index should be written"
+            },
+            "file_pattern": {
+                "type": "string",
+                "description": "pattern to match markdown files (*.md)"
+            },
+            "tag_pattern": {
+                "type": "string",
+                "description": "pattern to match H1 tags (# or ===)",
+                "default": "#"
+            }
+        }
+    }
 }]

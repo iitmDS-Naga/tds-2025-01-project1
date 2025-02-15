@@ -13,6 +13,7 @@ from run_prettier_format import run_prettier_format
 from run_count_days import run_count_days
 from run_sort_array_of_contacts import run_sort_array_of_contacts
 from run_write_most_recent_logs import run_write_most_recent_logs
+from run_extract_markdown_titles import run_extract_markdown_titles
 
 app = FastAPI()
 
@@ -66,7 +67,8 @@ async def call_task(task_object: Dict[str,Any]):
         "run_prettier_format": run_prettier_format,
         "run_count_days": run_count_days,
         "run_sort_array_of_contacts": run_sort_array_of_contacts,
-        "run_write_most_recent_logs": run_write_most_recent_logs
+        "run_write_most_recent_logs": run_write_most_recent_logs,
+        "run_extract_markdown_titles": run_extract_markdown_titles
 
     }
     
