@@ -176,7 +176,7 @@ custom_function = [{
         }
     }
 }, {
-    "name" "task_extract_data_from_website"
+    "name": "task_extract_data_from_website",
     "description": "Check if the passed string asks to extract data from a website",
     "parameters": {
         "type": "object",
