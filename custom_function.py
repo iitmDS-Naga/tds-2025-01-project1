@@ -93,4 +93,32 @@ custom_function = [{
             }
         }
     }
+},{
+    "name": "run_write_most_recent_logs",
+    "description": "Check if the passed string asks to write the most recent log entries from multiple files",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "input_directory": {
+                "type": "string",
+                "description": "directory path containing the log files"
+            },
+            "file_pattern": {
+                "type": "string",
+                "description": "pattern to match log files (*.log)"
+            },
+            "output_file_path": {
+                "type": "string",
+                "description": "path where the combined log entries should be written"
+            },
+            "num_files": {
+                "type": "integer",
+                "description": "number of most recent log files to process"
+            },
+            "lines_per_file": {
+                "type": "integer",
+                "description": "number of lines to extract from each file"
+            }
+        }
+    }
 }]
