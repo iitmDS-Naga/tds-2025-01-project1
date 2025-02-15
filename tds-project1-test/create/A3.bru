@@ -1,0 +1,15 @@
+meta {
+  name: A3
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8000/run?task="The file /data/dates.txt contains a list of dates, one per line. Count the number of Wednesdays in the list, and write just the number to /data/dates-wednesdays.txt"
+  body: none
+  auth: none
+}
+
+params:query {
+  task: "The file /data/dates.txt contains a list of dates, one per line. Count the number of Wednesdays in the list, and write just the number to /data/dates-wednesdays.txt"
+}

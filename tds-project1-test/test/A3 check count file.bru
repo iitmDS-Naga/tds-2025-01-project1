@@ -1,0 +1,15 @@
+meta {
+  name: A3 check count file
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8000/read?path=/data/dates-wednesdays.txt
+  body: none
+  auth: none
+}
+
+params:query {
+  path: /data/dates-wednesdays.txt
+}

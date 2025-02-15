@@ -1,0 +1,15 @@
+meta {
+  name: A4 check sorted file
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:8000/read?path=/data/contacts-sorted.json
+  body: none
+  auth: none
+}
+
+params:query {
+  path: /data/contacts-sorted.json
+}

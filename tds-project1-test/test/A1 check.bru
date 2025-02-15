@@ -1,0 +1,15 @@
+meta {
+  name: A1 check
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8000/read?path=/data/format.md
+  body: none
+  auth: none
+}
+
+params:query {
+  path: /data/format.md
+}
