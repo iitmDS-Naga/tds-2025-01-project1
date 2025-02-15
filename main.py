@@ -14,7 +14,8 @@ from run_count_days import run_count_days
 from run_sort_array_of_contacts import run_sort_array_of_contacts
 from run_write_most_recent_logs import run_write_most_recent_logs
 from run_extract_markdown_titles import run_extract_markdown_titles
-
+from task_fetch_data_from_api import task_fetch_data_from_api
+from task_extract_data_from_website import task_extract_data_from_website
 app = FastAPI()
 
 async def parse_task(task_description: str) -> Dict[str, Any]:
@@ -68,8 +69,9 @@ async def call_task(task_object: Dict[str,Any]):
         "run_count_days": run_count_days,
         "run_sort_array_of_contacts": run_sort_array_of_contacts,
         "run_write_most_recent_logs": run_write_most_recent_logs,
-        "run_extract_markdown_titles": run_extract_markdown_titles
-
+        "run_extract_markdown_titles": run_extract_markdown_titles,
+        "task_fetch_data_from_api": task_fetch_data_from_api,
+        "task_extract_data_from_website": task_extract_data_from_website,
     }
     
     function_to_call = available_functions[function_called]

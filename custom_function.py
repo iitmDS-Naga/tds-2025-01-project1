@@ -147,4 +147,63 @@ custom_function = [{
             }
         }
     }
+},{
+    "name": "task_fetch_data_from_api",
+    "description": "Check if the passed string asks to fetch data from an API and save it",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "api_url": {
+                "type": "string",
+                "description": "URL of the API endpoint"
+            },
+            "http_method": {
+                "type": "string", 
+                "description": "HTTP method to use (GET, POST, etc.)"
+            },
+            "output_file_path": {
+                "type": "string",
+                "description": "path where the API response should be saved"
+            },
+            "request_headers": {
+                "type": "object",
+                "description": "headers to include in the API request"
+            },
+            "request_params": {
+                "type": "object",
+                "description": "query parameters for the API request"
+            }
+        }
+    }
+}, {
+    "name" "task_extract_data_from_website"
+    "description": "Check if the passed string asks to extract data from a website",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "website_url": {
+                "type": "string",
+                "description": "URL of the website to scrape"
+            },
+            "css_selectors": {
+                "type": "array",
+                "description": "CSS selectors to target specific elements",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "output_file_path": {
+                "type": "string",
+                "description": "path where the scraped data should be saved"
+            },
+            "data_format": {
+                "type": "string",
+                "description": "format to save the data (json, csv, etc.)"
+            },
+            "max_depth": {
+                "type": "integer",
+                "description": "maximum depth of pages to crawl"
+            }
+        }
+    }
 }]
