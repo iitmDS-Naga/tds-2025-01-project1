@@ -18,7 +18,13 @@ ENV PYTHONUNBUFFERED=1
 #Copy from the cache instead of linking since it's a mounted volume
 ENV UV_LINK_MODE=copy
 
+# Set the data directory environment variable
+ENV DATA_DIR=/data
+
 WORKDIR /app
+
+RUN apk update \
+    && apk add --no-cache curl jq nodejs npm
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
@@ -58,7 +64,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 ENTRYPOINT []
 
 # Expose the port that the application listens on.
-EXPOSE 4200
+EXPOSE 8000
 
 # Run the application.
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4200"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
