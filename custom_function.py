@@ -66,7 +66,7 @@ custom_function = [{
             },
             "output_file_path": {
                 "type": "string",
-                "description": "path of the file that should be written"
+                "description": "path of the file that should be written return"
             },
             "request_to_count": {
                 "type": "string",
