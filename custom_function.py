@@ -67,12 +67,10 @@ custom_function = [{
             "output_file_path": {
                 "type": "string",
                 "description": "path of the file that should be written return"
-            },
-            "request_to_count": {
-                "type": "string",
-                "description": "return true if count of a weekday is asked"
             }
         }
      }
-     
+},{
+     "name": "sort_array_of_contacts",
+     "description": "Check if the passed string asking to sort the array of contacts in a given file",
 }]

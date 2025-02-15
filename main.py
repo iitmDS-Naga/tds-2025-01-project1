@@ -2,9 +2,10 @@ from typing import Dict, Any
 
 from fastapi import FastAPI, Request, Response
 from openai import OpenAI
+from pathlib import Path
 import json
 import os
-import subprocess
+import httpx
 
 from custom_function import custom_function
 from run_datagen import run_datagen
@@ -13,28 +14,41 @@ from run_count_days import run_count_days
 
 app = FastAPI()
 
-
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-
-
-def parse_task(task_description: str) -> Dict[str, Any]:
+async def parse_task(task_description: str) -> Dict[str, Any]:
     """Parse task description into structured JSON plan using GPT-4."""
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{
+    headers = {
+        "Authorization": f"Bearer {os.getenv('AIPROXY_TOKEN')}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "model": "gpt-4o-mini",
+        "messages": [{
             "role": "user",
             "content": task_description
         }],
-        functions= custom_function,
-        function_call="auto"
-    )
-    
-    response_message = response.choices[0].message
+        "functions": custom_function,
+        "function_call": "auto"
+    }
 
-    if response_message.function_call is None:
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
+            headers=headers,
+            json=payload
+        )
+        response.raise_for_status()
+        data = response.json()
+    
+    response_message = data["choices"][0]["message"]
+    
+    if "function_call" not in response_message:
         raise ValueError("No function call returned by GPT-4")
 
-    response_dict = { response_message.function_call.name : json.loads(response_message.function_call.arguments)}
+    response_dict = {
+        response_message["function_call"]["name"]: 
+        json.loads(response_message["function_call"]["arguments"])
+    }
     return response_dict
 
 async def call_task(task_object: Dict[str,Any]):
@@ -77,7 +91,7 @@ async def run_task(request: Request) -> Response:
         return Response(content="Task is required", status_code=400)
     
     try:
-        plan = parse_task(task)
+        plan = await parse_task(task)
         print(plan)
         action_response = await call_task(plan)
         print(action_response)
@@ -87,12 +101,32 @@ async def run_task(request: Request) -> Response:
     
 @app.get("/read")
 async def read_file(path: str = None) -> Response:
-    """Read and return contents of specified file."""
+    """Read and return contents of specified file from data directory."""
     if not path:
         return Response(content="Path parameter is required", status_code=400)
+    
     try:
-        with open(f"../{path}", 'r') as file:
+        clean_path = path.replace('/data/', '').lstrip('/')
+        # Construct path and resolve to absolute path
+        data_dir = Path("../data").resolve()
+        file_path = (data_dir / clean_path).resolve()
+        
+        # Verify the path is within data directory
+        if not str(file_path).startswith(str(data_dir)):
+            return Response(
+                content="Access denied: Can only access files in data directory",
+                status_code=403
+            )
+            
+        if not file_path.is_file():
+            return Response(status_code=404)
+            
+        with open(file_path, 'r') as file:
             content = file.read()
         return Response(content=content, status_code=200)
-    except FileNotFoundError:
-        return Response(status_code=404)
+    
+    except Exception as e:
+        return Response(
+            content=f"Error reading file: {str(e)}", 
+            status_code=500
+        )

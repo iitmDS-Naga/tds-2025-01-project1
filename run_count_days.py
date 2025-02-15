@@ -3,19 +3,13 @@ import os
 from datetime import datetime
 import dateparser
 
-async def run_count_days(input_file_path, weekday_to_count, request_to_count, output_file_path = None):
+async def run_count_days(input_file_path, weekday_to_count, output_file_path = None):
     """
     [... existing docstring ...]
     """
     # If output path is empty, create a default path based on weekday
     if not output_file_path:
         output_file_path = f"data/dates-{weekday_to_count.lower()}s.txt"
-    
-    if request_to_count.lower() != 'true':
-        return {
-            "status": "error",
-            "message": "Not a valid count request"
-        }
 
     try:
         # Check if input file exists
