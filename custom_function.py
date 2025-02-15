@@ -71,6 +71,26 @@ custom_function = [{
         }
      }
 },{
-     "name": "sort_array_of_contacts",
-     "description": "Check if the passed string asking to sort the array of contacts in a given file",
+     "name": "run_sort_array_of_contacts",
+     "description": "Check if the passed string asking to sort the array of contacts in a given file and by what attributes",
+    "parameters":{
+        "type": "object",
+        "properties": {
+            "input_file_path": {
+                "type": "string",
+                "description": "path of the input file containing contacts array"
+            },
+            "output_file_path": {
+                "type": "string",
+                "description": "path where the sorted contacts should be written"
+            },
+            "sort_attributes": {
+                "type": "array",
+                "description": "attributes to sort by in order of priority",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }]
