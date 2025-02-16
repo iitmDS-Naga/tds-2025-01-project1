@@ -1,0 +1,15 @@
+meta {
+  name: A7 check file info
+  type: http
+  seq: 10
+}
+
+get {
+  url: http://localhost:8000/read?path=/data/email-sender.txt
+  body: none
+  auth: none
+}
+
+params:query {
+  path: /data/email-sender.txt
+}

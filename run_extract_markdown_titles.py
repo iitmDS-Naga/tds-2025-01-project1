@@ -58,8 +58,8 @@ async def run_extract_markdown_titles(
                     else:
                         title = os.path.splitext(os.path.basename(file_path))[0]
 
-                    # Store relative path from /data/ directory
-                    rel_path = os.path.relpath(file_path, os.path.join("..", "data"))
+                    # Store just the file name
+                    rel_path = os.path.basename(file_path)
                     markdown_index[rel_path] = title
 
             except Exception as e:

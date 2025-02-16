@@ -5,11 +5,11 @@ meta {
 }
 
 post {
-  url: http://localhost:8000/run?task="Find all Markdown (.md) files in /data/docs/. For each file, extract the first occurrance of each H1 (i.e. a line starting with # ). Create an index file /data/docs/index.json that maps each filename (without the /data/docs/ prefix) to its title "
+  url: http://localhost:8000/run?task="Find all Markdown (.md) files in /data/docs/. Extract the first H1 heading from each file and create an index file at /data/docs/index.json"
   body: none
   auth: none
 }
 
 params:query {
-  task: "Find all Markdown (.md) files in /data/docs/. For each file, extract the first occurrance of each H1 (i.e. a line starting with # ). Create an index file /data/docs/index.json that maps each filename (without the /data/docs/ prefix) to its title "
+  task: "Find all Markdown (.md) files in /data/docs/. Extract the first H1 heading from each file and create an index file at /data/docs/index.json"
 }

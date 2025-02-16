@@ -1,0 +1,15 @@
+meta {
+  name: A7
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8000/run?task="/data/email.txt contains an email message. Pass the content to an LLM with instructions to extract the sender’s email address, and write just the email address to /data/email-sender.txt"
+  body: none
+  auth: none
+}
+
+params:query {
+  task: "/data/email.txt contains an email message. Pass the content to an LLM with instructions to extract the sender’s email address, and write just the email address to /data/email-sender.txt"
+}

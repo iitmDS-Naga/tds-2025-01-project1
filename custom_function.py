@@ -123,22 +123,25 @@ custom_function = [{
     }
 },{
     "name": "run_extract_markdown_titles",
-    "description": "Find all Markdown and extract the first occurrence of each H1 tag ",
+    "description": "Find all Markdown files at a given path and extract the first occurrence of each H1 tag ",
     "parameters": {
         "type": "object",
         "required": ["input_directory", "output_file_path", "file_pattern"],
         "properties": {
             "input_directory": {
                 "type": "string",
-                "description": "directory containing markdown files to process"
+                "description": "directory containing markdown files to process",
+                "default": "./data/docs/"
             },
             "output_file_path": {
                 "type": "string",
-                "description": "path where the JSON index should be written"
+                "description": "directory path where the index.json should be written",
+                "default": "./data/docs/index.json"
             },
             "file_pattern": {
                 "type": "string",
-                "description": "pattern to match markdown files (*.md)"
+                "description": "pattern to match markdown files (*.md)",
+                "default": "*.md"
             },
             "tag_pattern": {
                 "type": "string",
@@ -147,6 +150,29 @@ custom_function = [{
             }
         }
     }
+},{
+    "name": "run_extract_on_email",
+    "description": "Get input file and output file paths and instructions",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "input_file_path": {
+                "type": "string",
+                "description": "path of the input file containing emails",
+                "default": "/data/email.txt"
+            },
+            "output_file_path": {
+                "type": "string", 
+                "description": "path where the extracted sender emails should be written",
+                "default": "/data/email-sender.txt"
+            },
+            "process_instruction": {
+                "type": "string",
+                "description": "instructions on how to process the file (e.g., extract sender, remove duplicates)"
+            }
+        }
+    }
+    
 },{
     "name": "task_fetch_data_from_api",
     "description": "Check if the passed string asks to fetch data from an API and save it",
