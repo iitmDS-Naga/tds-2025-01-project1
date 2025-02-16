@@ -123,7 +123,7 @@ custom_function = [{
     }
 },{
     "name": "run_extract_markdown_titles",
-    "description": "Find all Markdown and extract the first occurrance of each H1 tag ",
+    "description": "Find all Markdown and extract the first occurrence of each H1 tag ",
     "parameters": {
         "type": "object",
         "required": ["input_directory", "output_file_path", "file_pattern"],

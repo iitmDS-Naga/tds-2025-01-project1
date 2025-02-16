@@ -60,9 +60,9 @@ async def run_write_most_recent_logs(
         for file_path in selected_files:
             try:
                 with open(file_path, 'r') as f:
-                    # Read all lines and take the last 'lines_per_file' lines
+                    # Read all lines and take the last 'first_line_per_file' lines
                     lines = f.readlines()
-                    recent_lines = lines[-lines_per_file:]
+                    recent_lines = lines[:1]
                     combined_logs.extend(recent_lines)
             except Exception as e:
                 return {
