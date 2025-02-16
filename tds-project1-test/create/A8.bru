@@ -1,0 +1,15 @@
+meta {
+  name: A8
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:8000/run?task="/data/credit_card.png contains a credit card number. Pass the image to an LLM, have it extract the card number, and write it without spaces to /data/credit-card.txt"
+  body: none
+  auth: none
+}
+
+params:query {
+  task: "/data/credit_card.png contains a credit card number. Pass the image to an LLM, have it extract the card number, and write it without spaces to /data/credit-card.txt"
+}

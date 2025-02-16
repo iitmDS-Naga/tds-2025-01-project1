@@ -17,6 +17,7 @@ from run_extract_markdown_titles import run_extract_markdown_titles
 from task_fetch_data_from_api import task_fetch_data_from_api
 from task_extract_data_from_website import task_extract_data_from_website
 from run_extract_on_email import run_extract_on_email
+from run_extract_card_number import run_extract_card_number
 app = FastAPI()
 
 async def parse_task(task_description: str) -> Dict[str, Any]:
@@ -73,7 +74,8 @@ async def call_task(task_object: Dict[str,Any]):
         "run_extract_markdown_titles": run_extract_markdown_titles,
         "task_fetch_data_from_api": task_fetch_data_from_api,
         "task_extract_data_from_website": task_extract_data_from_website,
-        "run_extract_on_email": run_extract_on_email
+        "run_extract_on_email": run_extract_on_email,
+        "run_extract_card_number": run_extract_card_number
     }
     
     function_to_call = available_functions[function_called]

@@ -174,6 +174,29 @@ custom_function = [{
     }
     
 },{
+    "name": "run_extract_card_number",
+    "description": "Extract credit card number from an image using OCR and LLM",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "input_image_path": {
+                "type": "string",
+                "description": "path of the input image containing credit card",
+                "default": "/data/credit_card.png"
+            },
+            "output_file_path": {
+                "type": "string",
+                "description": "path where the extracted card number should be written",
+                "default": "/data/credit-card.txt" 
+            },
+            "process_instruction": {
+                "type": "string",
+                "description": "instructions for processing the image",
+                "default": "extract card number without spaces"
+            }
+        }
+    }
+},{
     "name": "task_fetch_data_from_api",
     "description": "Check if the passed string asks to fetch data from an API and save it",
     "parameters": {

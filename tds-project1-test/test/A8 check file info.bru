@@ -1,0 +1,15 @@
+meta {
+  name: A8 check file info
+  type: http
+  seq: 11
+}
+
+get {
+  url: http://localhost:8000/read?path=/data/credit-card.txt
+  body: none
+  auth: none
+}
+
+params:query {
+  path: /data/credit-card.txt
+}
